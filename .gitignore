@@ -1,0 +1,12 @@
+# Environment secrets — never commit your real .env!
+.env
+
+# Explorer config contains your admin token — never commit it!
+config/
+
+# InfluxDB data directories — created by scripts/setup.sh
+data/
+
+# OS cruft
+.DS_Store
+Thumbs.db
