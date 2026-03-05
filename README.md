@@ -123,7 +123,17 @@ Restart Claude Desktop to apply.
 
 ---
 
-## Useful Commands
+## Reference
+
+### Ports Used
+
+| Service | Host Port | Container Port |
+|---|---|---|
+| InfluxDB 3 Enterprise API | `18181` | `8181` |
+| InfluxDB 3 Explorer UI | `18888` | `80` |
+| InfluxDB 3 MCP Server | stdio | stdio |
+
+### Useful Commands
 
 ```bash
 # View logs
@@ -155,19 +165,7 @@ docker exec influxdb3-enterprise \
   "cpu,host=server01 usage=42.5"
 ```
 
----
-
-## Ports Reference
-
-| Service | Host Port | Container Port |
-|---|---|---|
-| InfluxDB 3 Enterprise API | `18181` | `8181` |
-| InfluxDB 3 Explorer UI | `18888` | `80` |
-| InfluxDB 3 MCP Server | stdio | stdio |
-
----
-
-## Troubleshooting
+### Troubleshooting
 
 **Container exits immediately on first boot**  
 → Make sure `INFLUXDB3_ENTERPRISE_LICENSE_EMAIL` is set in `.env`  
@@ -185,12 +183,8 @@ docker exec influxdb3-enterprise \
 **Port already in use**  
 → Edit the host ports in `compose.yaml` (left side of the `ports` mapping)
 
----
-
-## Resources
+### Resources
 
 - [InfluxDB 3 Enterprise Docs](https://docs.influxdata.com/influxdb3/enterprise/)
 - [InfluxDB 3 Explorer Docs](https://docs.influxdata.com/influxdb3/explorer/)
-- [InfluxDB 3 MCP Server (GitHub)](https://github.com/influxdata/influxdb3_mcp_server)
-- [Docker Hub — influxdb](https://hub.docker.com/_/influxdb)
-- [Docker Hub — influxdb3-ui](https://hub.docker.com/r/influxdata/influxdb3-ui)
+- [Use the InfluxDB 3 MCP server](https://docs.influxdata.com/influxdb3/enterprise/admin/mcp-server/)
