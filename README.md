@@ -17,7 +17,7 @@ A ready-to-run Docker Compose stack with three containers:
 
 ---
 
-## Quick Start
+## Project Setup
 
 ### Option A — Git users
 
@@ -43,6 +43,26 @@ bash scripts/setup.sh
 ```
 
 This creates all directories, generates a secure admin token, and wires it into `.env`, `config/admin-token.json`, and `config/config.json` automatically.
+
+**Verify your project looks like this before continuing:**
+
+```
+influxdb3-ai-stack-demo/
+├── compose.yaml
+├── .env.example
+├── .env                  ← created, with token pre-filled
+├── .gitignore
+├── README.md
+├── scripts/
+│   └── setup.sh
+├── config/               ← created
+│   ├── admin-token.json  ← pre-generated admin token
+│   └── config.json       ← Explorer pre-connection config
+└── data/                 ← created
+    ├── enterprise/
+    ├── plugins/
+    └── explorer/
+```
 
 ### 2 — Add your email to `.env`
 
@@ -99,6 +119,8 @@ Add this block (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOK
 
 Restart Claude Desktop to apply.
 
+🚀 You're all set — start building your InfluxDB 3 AI use case!
+
 ---
 
 ## Useful Commands
@@ -131,29 +153,6 @@ docker exec influxdb3-enterprise \
 docker exec influxdb3-enterprise \
   influxdb3 write --token YOUR_TOKEN --database YOUR_DB \
   "cpu,host=server01 usage=42.5"
-```
-
----
-
-## Project Structure
-
-```
-influxdb3-ai-stack-demo/
-├── compose.yaml          # Stack definition (3 services)
-├── .env.example          # Environment variable template
-├── .env                  # Your local secrets (gitignored)
-├── .gitignore
-├── LICENSE
-├── README.md
-├── scripts/
-│   └── setup.sh          # Generates token, dirs, .env, and config.json
-├── config/               # Created by setup.sh (gitignored)
-│   ├── admin-token.json  # Pre-generated offline admin token (Docker secret)
-│   └── config.json       # Explorer pre-connection config
-└── data/                 # Created by setup.sh (gitignored)
-    ├── enterprise/       # InfluxDB 3 Parquet files & WAL
-    ├── plugins/          # Server-side plugin scripts
-    └── explorer/         # Explorer app state & saved queries
 ```
 
 ---
@@ -195,9 +194,3 @@ influxdb3-ai-stack-demo/
 - [InfluxDB 3 MCP Server (GitHub)](https://github.com/influxdata/influxdb3_mcp_server)
 - [Docker Hub — influxdb](https://hub.docker.com/_/influxdb)
 - [Docker Hub — influxdb3-ui](https://hub.docker.com/r/influxdata/influxdb3-ui)
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE)
