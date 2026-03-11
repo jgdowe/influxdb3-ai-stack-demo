@@ -4,9 +4,9 @@ A ready-to-run Docker Compose stack with three containers:
 
 | Container | Image | Port | Purpose |
 |---|---|---|---|
-| `influxdb3-enterprise` | `influxdb:3-enterprise` | `18181` | Time-series database |
-| `influxdb3-explorer` | `influxdata/influxdb3-ui` | `18888` | Web UI for querying & managing data |
-| `influxdb3-mcp` | `influxdata/influxdb3-mcp-server` | stdio | MCP server for AI agent integration |
+| `demo-influxdb3-enterprise` | `influxdb:3-enterprise` | `18181` | Time-series database |
+| `demo-influxdb3-explorer` | `influxdata/influxdb3-ui` | `18888` | Web UI for querying & managing data |
+| *(MCP server)* | `influxdata/influxdb3-mcp-server` | stdio | Launched on demand by your AI client — see below |
 
 ---
 
@@ -86,20 +86,20 @@ Go to http://localhost:18888 — Explorer opens pre-connected to your InfluxDB i
 
 ---
 
-## Connect to an AI Agent (optional)
+## Connect to Claude Desktop
 
-The MCP server lets AI tools like Claude Desktop query and manage your InfluxDB instance directly.
+The MCP server lets Claude Desktop query and manage your InfluxDB instance directly using natural language.
 
-Edit your Claude Desktop config file:
-- **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-- **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-
-Add this block (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOKEN` from your `.env`):
+1. Open **Claude Desktop**
+2. Go to **Settings** → **Developer** → **Edit Config**
+3. Open the `claude_desktop_config.json` file with a text editor
+4. Inside the `mcpServers` block, add the `influxdb` entry below — leave any existing servers untouched (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOKEN` from your `.env`):
 
 ```json
 {
   "mcpServers": {
-    "influxdb": {
+    "...any existing servers stay here...": {},
+    "influxdb_ai_demo": {
       "command": "docker",
       "args": [
         "run", "--rm", "--interactive",
@@ -119,7 +119,7 @@ Add this block (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOK
 }
 ```
 
-Restart Claude Desktop to apply.
+5. Save the file and restart Claude Desktop.
 
 🚀 You're all set — start building your InfluxDB 3 AI use case!
 
@@ -133,7 +133,6 @@ Restart Claude Desktop to apply.
 |---|---|---|
 | InfluxDB 3 Enterprise API | `18181` | `8181` |
 | InfluxDB 3 Explorer UI | `18888` | `80` |
-| InfluxDB 3 MCP Server | stdio | stdio |
 
 ### Useful Commands
 
@@ -142,7 +141,7 @@ Restart Claude Desktop to apply.
 docker compose logs -f
 
 # View logs for one service
-docker compose logs -f influxdb3-enterprise
+docker compose logs -f demo-influxdb3-enterprise
 
 # Stop everything (data is preserved)
 docker compose down
@@ -151,18 +150,18 @@ docker compose down
 docker compose down -v
 
 # Restart one service
-docker compose restart influxdb3-enterprise
+docker compose restart demo-influxdb3-enterprise
 
 # Open a shell in the Enterprise container
-docker exec -it influxdb3-enterprise bash
+docker exec -it demo-influxdb3-enterprise bash
 
 # Run a SQL query
-docker exec influxdb3-enterprise \
+docker exec demo-influxdb3-enterprise \
   influxdb3 query --token YOUR_TOKEN --database YOUR_DB \
   "SELECT * FROM my_table LIMIT 10"
 
 # Write a test data point
-docker exec influxdb3-enterprise \
+docker exec demo-influxdb3-enterprise \
   influxdb3 write --token YOUR_TOKEN --database YOUR_DB \
   "cpu,host=server01 usage=42.5"
 ```
@@ -172,7 +171,7 @@ docker exec influxdb3-enterprise \
 **Container exits immediately on first boot**  
 → Make sure `INFLUXDB3_ENTERPRISE_LICENSE_EMAIL` is set in `.env`  
 → Check your inbox for a verification email from InfluxData and click the link  
-→ View logs: `docker compose logs influxdb3-enterprise`
+→ View logs: `docker compose logs demo-influxdb3-enterprise`
 
 **Explorer shows a connection error**  
 → Confirm InfluxDB Enterprise is healthy: `docker compose ps`  

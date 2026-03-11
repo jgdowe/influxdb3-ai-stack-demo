@@ -61,7 +61,7 @@ echo "✅  INFLUXDB3_AUTH_TOKEN written to .env"
 # ── Write config/config.json for Explorer ─────────────────────
 cat > "$REPO_ROOT/config/config.json" << JSONEOF
 {
-  "DEFAULT_INFLUX_SERVER": "http://influxdb3-enterprise:8181",
+  "DEFAULT_INFLUX_SERVER": "http://demo-influxdb3-enterprise:8181",
   "DEFAULT_SERVER_NAME": "InfluxDB 3 Enterprise (local)",
   "DEFAULT_API_TOKEN": "$TOKEN"
 }
