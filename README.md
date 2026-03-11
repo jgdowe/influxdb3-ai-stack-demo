@@ -30,7 +30,9 @@ cd influxdb3-ai-stack-demo
 
 1. Click the green **Code** button at the top of this page
 2. Click **Download ZIP**
-3. Unzip the file and open a terminal inside the `influxdb3-ai-stack-demo` folder
+3. Unzip the file and open a terminal inside the `influxdb3-ai-stack-demo` folder:
+   - **macOS:** right-click the folder in Finder → **New Terminal at Folder**
+   - **Windows:** open the folder in File Explorer, click the address bar, type `cmd` and press Enter
 
 ---
 
