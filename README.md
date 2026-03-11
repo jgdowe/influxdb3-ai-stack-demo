@@ -129,7 +129,7 @@ e. Save the file and restart Claude Desktop.
 
 ## BUILDING YOUR USE CASE
 
-### Ingest your data
+### 1 — Ingest your data
 
 Your team is responsible for ingesting the data that drives your scenario into InfluxDB. How you do this depends on your use case:
 
@@ -139,9 +139,7 @@ Your team is responsible for ingesting the data that drives your scenario into I
 
 Either way, the [InfluxDB 3 MCP server](https://docs.influxdata.com/influxdb3/enterprise/admin/mcp-server/) gives Claude Desktop direct access to write and query data, so you can also ingest data conversationally once your stack is running.
 
----
-
-### Build a UI with Claude
+### 2 — Build a UI with Claude
 
 Once your data is flowing, Claude can help you build a front-end to visualise and interact with it. A few supported approaches:
 
