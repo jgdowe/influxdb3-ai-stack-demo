@@ -10,7 +10,7 @@ A ready-to-run Docker Compose stack with three containers:
 
 ---
 
-## Prerequisites
+## PREREQUISITES
 
 - **Docker Desktop** → https://docs.docker.com/get-docker/
 - **Claude Desktop** → https://claude.ai/download
@@ -18,7 +18,7 @@ A ready-to-run Docker Compose stack with three containers:
 
 ---
 
-## Project Setup
+## PROJECT SETUP
 
 ### Option A — Git users
 
@@ -37,7 +37,7 @@ cd influxdb3-ai-stack-demo
 
 ---
 
-From here, everyone follows the same three steps:
+From here, everyone follows the same four steps:
 
 ### 1 — Run the setup script
 
@@ -85,16 +85,17 @@ Go to http://localhost:18888 — Explorer opens pre-connected to your InfluxDB i
 
 > On first boot, InfluxDB will send a verification email to the address you provided. Click the link to activate your trial license. The server will complete initialization automatically.
 
----
-
-## Configure Claude Desktop to run the InfluxDB 3 MCP server
+### 4 — Configure Claude Desktop to run the InfluxDB 3 MCP server
 
 The MCP server lets Claude Desktop query and manage your InfluxDB instance directly using natural language.
 
-1. Open **Claude Desktop**
-2. Go to **Settings** → **Developer** → **Edit Config**
-3. Open the `claude_desktop_config.json` file with a text editor
-4. Inside the `mcpServers` block, add the `influxdb_ai_demo` entry below — leave any existing servers untouched (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOKEN` from your `.env`):
+a. Open **Claude Desktop**
+
+b. Go to **Settings** → **Developer** → **Edit Config**
+
+c. Open the `claude_desktop_config.json` file with a text editor
+
+d. Inside the `mcpServers` block, add the `influxdb_ai_demo` entry below — leave any existing servers untouched (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOKEN` from your `.env`):
 
 ```json
 {
@@ -120,13 +121,13 @@ The MCP server lets Claude Desktop query and manage your InfluxDB instance direc
 }
 ```
 
-5. Save the file and restart Claude Desktop.
+e. Save the file and restart Claude Desktop.
 
 🚀 You're all set — start building your InfluxDB 3 AI use case!
 
 ---
 
-## Reference
+## REFERENCE
 
 ### Ports Used
 
