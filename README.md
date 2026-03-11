@@ -13,6 +13,7 @@ A ready-to-run Docker Compose stack with three containers:
 ## Prerequisites
 
 - **Docker Desktop** → https://docs.docker.com/get-docker/
+- **Claude Desktop** → https://claude.ai/download
 - An **email address** to activate a free InfluxDB 3 Enterprise trial (sent by email on first boot)
 
 ---
@@ -86,14 +87,14 @@ Go to http://localhost:18888 — Explorer opens pre-connected to your InfluxDB i
 
 ---
 
-## Connect to Claude Desktop
+## Configure Claude Desktop to run the InfluxDB 3 MCP server
 
 The MCP server lets Claude Desktop query and manage your InfluxDB instance directly using natural language.
 
 1. Open **Claude Desktop**
 2. Go to **Settings** → **Developer** → **Edit Config**
 3. Open the `claude_desktop_config.json` file with a text editor
-4. Inside the `mcpServers` block, add the `influxdb` entry below — leave any existing servers untouched (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOKEN` from your `.env`):
+4. Inside the `mcpServers` block, add the `influxdb_ai_demo` entry below — leave any existing servers untouched (replace `YOUR_ADMIN_TOKEN` with the value of `INFLUXDB3_AUTH_TOKEN` from your `.env`):
 
 ```json
 {
