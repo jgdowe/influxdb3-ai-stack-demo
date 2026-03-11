@@ -127,6 +127,34 @@ e. Save the file and restart Claude Desktop.
 
 ---
 
+## BUILDING YOUR USE CASE
+
+### Ingest your data
+
+Your team is responsible for ingesting the data that drives your scenario into InfluxDB. How you do this depends on your use case:
+
+**One-off / batch load** — write a script or use the InfluxDB CLI to load a static dataset once. Good for historical data, demos with a fixed dataset, or anything that doesn't need to update in real time.
+
+**Simulated real-time data** — if your scenario benefits from live-updating data, a simple Python script can generate and stream data points on a schedule. This is a lightweight way to simulate IoT sensors, application metrics, financial ticks, or any time-series signal without needing a real source.
+
+Either way, the [InfluxDB 3 MCP server](https://docs.influxdata.com/influxdb3/enterprise/admin/mcp-server/) gives Claude Desktop direct access to write and query data, so you can also ingest data conversationally once your stack is running.
+
+---
+
+### Build a UI with Claude
+
+Once your data is flowing, Claude can help you build a front-end to visualise and interact with it. A few supported approaches:
+
+**Claude Artifacts** — the fastest option. Ask Claude Desktop to generate a self-contained interactive chart or dashboard directly in the chat window. No files, no deployment — ideal for quick explorations and demos.
+
+**Static HTML/JS page** — ask Claude to generate a standalone `index.html` file that queries your InfluxDB instance and renders data in the browser. Easy to share, requires no framework or build step.
+
+**PowerPoint presentation** — ask Claude to generate a `.pptx` slide deck summarising your data, findings, or scenario narrative. A good fit for presenting results to stakeholders without needing a live demo.
+
+**Claude Code** — for more complex applications (multi-page apps, custom backends, richer interactivity), use [Claude Code](https://claude.ai/download) to scaffold and iterate on a full project in your local environment.
+
+---
+
 ## REFERENCE
 
 ### Ports Used
