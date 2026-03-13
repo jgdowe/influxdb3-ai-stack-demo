@@ -45,7 +45,7 @@ You will need an email address to activate a free InfluxDB 3 Enterprise trial. A
 
 ## PROJECT SETUP
 
-### Get the project files
+### 1 — Get the project files
 
 **Option A — Download as a ZIP (recommended if you are not a developer)**
 
@@ -65,9 +65,9 @@ cd influxdb3-ai-stack-demo
 
 ---
 
-From here, everyone follows the same five steps.
+From here, everyone follows the same six steps.
 
-### 1 — Open a terminal inside the project folder
+### 2 — Open a terminal inside the project folder
 
 A terminal is a text-based window where you type commands. Here is how to open one directly inside the project folder:
 
@@ -93,7 +93,7 @@ A black Command Prompt window will open, already pointed at your project folder.
 
 ---
 
-### 2 — Run the setup script
+### 3 — Run the setup script
 
 In the terminal window you just opened, type the following and press **Enter**:
 
@@ -144,7 +144,7 @@ influxdb3-ai-stack-demo/
 
 ---
 
-### 3 — Add your email to the `.env` file
+### 4 — Add your email to the `.env` file
 
 The `.env` file holds your project settings. You need to add your email address so InfluxDB can activate your free trial licence.
 
@@ -180,7 +180,7 @@ Save the file (**Command + S** on Mac, **Ctrl + S** on Windows) and close the te
 
 ---
 
-### 4 — Start the stack
+### 5 — Start the stack
 
 Go back to your terminal window and type the following, then press **Enter**:
 
@@ -200,7 +200,7 @@ You should see the InfluxDB Explorer interface, already connected to your databa
 
 ---
 
-### 5 — Connect Claude Desktop to your database
+### 6 — Connect Claude Desktop to your database
 
 This step lets Claude Desktop talk directly to your InfluxDB database so you can explore and interact with your data using natural language.
 
