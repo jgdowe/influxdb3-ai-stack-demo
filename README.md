@@ -28,9 +28,16 @@ Before you start, make sure you have installed:
 
 Docker is the software that runs the database and web interface on your computer.
 
-- Download it here: https://docs.docker.com/get-docker/
-- Run the installer and follow the on-screen instructions
-- Once installed, open Docker Desktop and leave it running in the background — you will see its icon in your taskbar (Windows) or menu bar (Mac)
+1. Go to https://docs.docker.com/get-docker/
+2. Download the right installer for your machine:
+   - **Mac:** click **Mac with Apple Silicon** — this is the correct version for most modern Macs. If you are unsure, click the Apple  menu (top-left of your screen) → **About This Mac** and check that it says "Apple M1", "M2", "M3" or similar
+   - **Windows:** click **Docker Desktop for Windows**
+3. Open the downloaded file and follow the installer instructions
+4. Once installed, open **Docker Desktop**
+5. You will be prompted to create a free Docker account — go ahead and create one. When asked to choose a plan, select **Personal**. Use a personal email address rather than your work InfluxData email for this
+6. After creating your account, **check your email inbox** — Docker will send you a verification email. Click the link in that email to verify your account. Docker Desktop may not function correctly until this is done
+7. If Docker prompts you to install **Python** during or after setup, click **Yes** and let it install — this is expected
+8. Once verified and signed in, leave Docker Desktop running in the background — you will see its whale icon in your taskbar (Windows) or menu bar (Mac)
 
 **2. Claude Desktop**
 
@@ -196,7 +203,14 @@ When it finishes and you see a new line with `$` or `>` ready for input, open yo
 
 You should see the InfluxDB Explorer interface, already connected to your database. ✅
 
-> **Important:** On first start, InfluxDB will send a verification email to the address you entered in `.env`. Check your inbox, find the email from InfluxData, and click the verification link. The database will finish setting itself up automatically after that.
+> ⚠️ **Important — you must verify your licence before the database will work:**
+>
+> 1. Check the inbox of the email address you added to `.env` in Step 4
+> 2. Look for an email from **InfluxData** with subject line about licence activation or trial confirmation
+> 3. Click the verification link inside that email
+> 4. Come back and refresh http://localhost:18888
+>
+> The database will not finish starting up until you click that link. If Explorer shows an error or a blank screen, this is almost always the reason — check your inbox (and spam folder) first.
 
 ---
 
@@ -206,7 +220,7 @@ This step lets Claude Desktop talk directly to your InfluxDB database so you can
 
 **a. Find your admin token**
 
-Open the `.env` file again (same steps as in Step 3).
+Open the `.env` file again (same steps as in Step 4).
 
 Find the line that starts with:
 
@@ -219,39 +233,28 @@ Select and copy everything after the `=` sign — this long string of characters
 **b. Open the Claude Desktop config file**
 
 1. Open **Claude Desktop**
-2. **Mac:** click **Claude** in the top menu bar → **Settings**  
-   **Windows:** click the **☰** menu icon in the top-left of the app → **Settings**
-3. Go to the **Developer** tab
-4. Click **Edit Config**
+2. Find and click your **account name** in the **bottom-left corner** of the app window
+3. Click **Settings** in the menu that appears
+4. Go to the **Developer** tab
+5. Click **Edit Config**
 
 This will open a file called `claude_desktop_config.json` in your default text editor.
 
 **c. Add the InfluxDB connection**
 
-The file will contain a JSON structure. It may look like this if it is empty:
+The file will look something like this — the `"preferences"` section may be empty or have some content in it:
 
 ```json
 {
-  "mcpServers": {}
+  "preferences": {}
 }
 ```
 
-Or like this if you already have other connections set up:
+Add the `"mcpServers"` block after the `"preferences"` section. The result should look like this — replace `YOUR_ADMIN_TOKEN` with the token you copied in step a:
 
 ```json
 {
-  "mcpServers": {
-    "some-other-tool": { ... }
-  }
-}
-```
-
-You need to add the `influxdb_ai_demo` block inside the `mcpServers` section. Replace `YOUR_ADMIN_TOKEN` with the token you copied in step a.
-
-**If `mcpServers` is empty**, replace the whole file with:
-
-```json
-{
+  "preferences": {},
   "mcpServers": {
     "influxdb_ai_demo": {
       "command": "docker",
@@ -273,7 +276,7 @@ You need to add the `influxdb_ai_demo` block inside the `mcpServers` section. Re
 }
 ```
 
-**If `mcpServers` already has entries**, add a comma after the last entry, then paste the `influxdb_ai_demo` block before the closing `}`. Do not remove any existing entries.
+> **Tip:** Make sure there is a comma after the closing `}` of the `"preferences"` block — as shown above. If the comma is missing, Claude Desktop will not be able to read the file.
 
 **d. Save and restart Claude Desktop**
 
