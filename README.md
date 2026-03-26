@@ -1,4 +1,5 @@
-# InfluxDB 3 AI Stack Demo
+# The Agentic Time Series Demo Challenge
+
 
 This guide walks you through setting up everything you need to build and demo an AI-powered use case with InfluxDB 3. By the end, you will have a running database, a web interface to explore your data, and Claude Desktop connected and ready to query your data using natural language.
 
